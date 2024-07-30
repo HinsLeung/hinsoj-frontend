@@ -9,10 +9,10 @@
     </a-form-item>
     <a-form :model="form" label-align="left">
       <a-form-item field="content" label="题目内容">
-        <MdEditor />
+        <MdEditor :value="form.content" :handle-change="onContentChange" />
       </a-form-item>
       <a-form-item field="answer" label="答案">
-        <MdEditor />
+        <MdEditor :value="form.answer" :handle-change="onAnswerChange" />
       </a-form-item>
 
       <a-form-item label="判题配置" :content-flex="false" :merge-props="false">
@@ -99,7 +99,7 @@
 
       <div style="margin-top: 16px" />
       <a-form-item>
-        <a-button type="primary">提交</a-button>
+        <a-button type="primary" @click="doSubmit">提交</a-button>
       </a-form-item>
     </a-form>
   </div>
@@ -108,6 +108,8 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 import MdEditor from "@/components/MdEditor.vue";
+import { QuestionControllerService } from "../../generated";
+import message from "@arco-design/web-vue/es/message";
 
 const form = reactive({
   title: "A + B",
@@ -127,6 +129,15 @@ const form = reactive({
   ],
 });
 
+const doSubmit = async () => {
+  const res = await QuestionControllerService.addQuestionUsingPost(form);
+  if (res.code === 0) {
+    message.success("创建成功");
+  } else {
+    message.error("创建失败， " + res.message);
+  }
+};
+
 /**
  * 新增判题用例
  */
@@ -143,6 +154,14 @@ const handleAdd = () => {
  */
 const handleDelete = (index: number) => {
   form.judgeCase.splice(index, 1);
+};
+
+const onContentChange = (v: string) => {
+  form.content = v;
+};
+
+const onAnswerChange = (v: string) => {
+  form.answer = v;
 };
 </script>
 
