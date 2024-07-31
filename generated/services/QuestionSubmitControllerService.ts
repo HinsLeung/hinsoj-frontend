@@ -28,8 +28,8 @@ export class QuestionSubmitControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -50,8 +50,8 @@ export class QuestionSubmitControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 }

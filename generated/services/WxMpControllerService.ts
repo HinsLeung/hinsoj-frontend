@@ -26,16 +26,16 @@ export class WxMpControllerService {
       method: "GET",
       url: "/api/",
       query: {
-        "echostr": echostr,
-        "nonce": nonce,
-        "signature": signature,
-        "timestamp": timestamp
+        echostr: echostr,
+        nonce: nonce,
+        signature: signature,
+        timestamp: timestamp,
       },
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -51,8 +51,8 @@ export class WxMpControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -68,8 +68,8 @@ export class WxMpControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 }

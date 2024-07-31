@@ -34,8 +34,8 @@ export class PostControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -56,8 +56,8 @@ export class PostControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -78,8 +78,8 @@ export class PostControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -96,13 +96,13 @@ export class PostControllerService {
       method: "GET",
       url: "/api/post/get/vo",
       query: {
-        "id": id
+        id: id,
       },
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -123,8 +123,8 @@ export class PostControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -145,8 +145,8 @@ export class PostControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -167,8 +167,8 @@ export class PostControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -189,8 +189,8 @@ export class PostControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 
@@ -211,8 +211,8 @@ export class PostControllerService {
       errors: {
         401: `Unauthorized`,
         403: `Forbidden`,
-        404: `Not Found`
-      }
+        404: `Not Found`,
+      },
     });
   }
 }
