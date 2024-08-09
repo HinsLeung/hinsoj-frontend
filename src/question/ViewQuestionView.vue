@@ -81,7 +81,6 @@ import message from "@arco-design/web-vue/es/message";
 import { useRouter } from "vue-router";
 import CodeEditor from "@/components/CodeEditor.vue";
 import MdViewer from "@/components/MdViewer.vue";
-import { QuestionSubmitControllerService } from "../../generated";
 
 interface Props {
   id: string;
@@ -116,7 +115,7 @@ const doSubmit = async () => {
   if (!question.value?.id) {
     return;
   }
-  const res = await QuestionSubmitControllerService.doQuestionSubmitUsingPost({
+  const res = await QuestionControllerService.doQuestionSubmitUsingPost({
     ...form.value,
     questionId: question.value.id,
   });

@@ -12,4 +12,3 @@ export type PostFavourQueryRequest = {
   sortOrder?: string;
   userId?: number;
 };
-

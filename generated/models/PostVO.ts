@@ -18,4 +18,3 @@ export type PostVO = {
   user?: UserVO;
   userId?: number;
 };
-

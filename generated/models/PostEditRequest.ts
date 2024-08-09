@@ -8,4 +8,3 @@ export type PostEditRequest = {
   tags?: Array<string>;
   title?: string;
 };
-

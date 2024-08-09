@@ -17,4 +17,3 @@ export type PostQueryRequest = {
   title?: string;
   userId?: number;
 };
-

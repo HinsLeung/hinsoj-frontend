@@ -54,14 +54,15 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watchEffect } from "vue";
+
+import message from "@arco-design/web-vue/es/message";
+import { useRouter } from "vue-router";
+import moment from "moment";
 import {
   Question,
   QuestionControllerService,
   QuestionQueryRequest,
 } from "../../generated";
-import message from "@arco-design/web-vue/es/message";
-import { useRouter } from "vue-router";
-import moment from "moment";
 
 const show = ref(true);
 const tableRef = ref([]);
