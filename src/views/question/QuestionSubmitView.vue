@@ -1,14 +1,23 @@
 <template>
-  <div id="questionView">
+  <div id="questionSubmitView">
     <a-form :model="searchParams" layout="inline">
-      <a-form-item field="title" label="名称" style="min-width: 240px">
-        <a-input v-model="searchParams.title" placeholder="请输入名称" />
+      <a-form-item field="title" label="题号" style="min-width: 240px">
+        <a-input v-model="searchParams.questionId" placeholder="请输入名称" />
       </a-form-item>
-      <a-form-item field="tags" label="标签" style="min-width: 280px">
-        <a-input-tag v-model="searchParams.tags" placeholder="请输入标签" />
+      <a-form-item field="language" label="编程语言" style="min-width: 240px">
+        <a-select
+          v-model="searchParams.language"
+          :style="{ width: '320px' }"
+          placeholder="选择编程语言"
+        >
+          <a-option>java</a-option>
+          <a-option>cpp</a-option>
+          <a-option>go</a-option>
+          <a-option>html</a-option>
+        </a-select>
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" @click="doSubmit">提交</a-button>
+        <a-button type="primary" @click="doSubmit">搜索</a-button>
       </a-form-item>
     </a-form>
     <a-divider size="0" />
@@ -24,22 +33,11 @@
       }"
       @page-change="onPageChange"
     >
-      <template #tags="{ record }">
-        <a-space wrap>
-          <a-tag v-for="(tag, index) of record.tags" :key="index" color="green"
-            >{{ tag }}
-          </a-tag>
-        </a-space>
-      </template>
-      <template #acceptedRate="{ record }">
-        {{
-          `${
-            record.submitNum ? record.acceptedNum / record.submitNum : "0"
-          }% (${record.acceptedNum}/${record.submitNum})`
-        }}
+      <template #judgeInfo="{ record }">
+        {{ JSON.stringify(record.judgeInfo) }}
       </template>
       <template #createTime="{ record }">
-        {{ moment(record.createTime).format("YYYY-MM-DD") }}
+        {{ moment(record.createTime).format("YYYY-MM-DD HH:mm:ss") }}
       </template>
       <template #optional="{ record }">
         <a-space>
@@ -62,22 +60,27 @@ import {
   Question,
   QuestionControllerService,
   QuestionQueryRequest,
-} from "../../generated";
+  QuestionSubmitQueryRequest,
+} from "../../../generated";
 
 const show = ref(true);
 const tableRef = ref([]);
 const dataList = ref([]);
 const total = ref(0);
-const searchParams = ref<QuestionQueryRequest>({
-  title: "",
-  tags: [],
+const searchParams = ref<QuestionSubmitQueryRequest>({
+  questionId: undefined,
+  language: undefined,
   pageSize: 4,
   current: 1,
 });
 
 const loadData = async () => {
-  const res = await QuestionControllerService.listQuestionVoByPageUsingPost(
-    searchParams.value
+  const res = await QuestionControllerService.listQuestionSubmitByPageUsingPost(
+    {
+      ...searchParams.value,
+      sortField: "createTime",
+      sortOrder: "descend",
+    }
   );
   if (res.code === 0) {
     dataList.value = res.data.records;
@@ -98,20 +101,32 @@ onMounted(() => {
 
 const columns = [
   {
-    title: "题号",
+    title: "提交号",
     dataIndex: "id",
   },
   {
-    title: "题目名称",
-    dataIndex: "title",
+    title: "题目标题",
+    dataIndex: "questionTitle",
   },
   {
-    title: "标签",
-    slotName: "tags",
+    title: "编程语言",
+    dataIndex: "language",
   },
   {
-    title: "通过率",
-    slotName: "acceptedRate",
+    title: "判题信息",
+    slotName: "judgeInfo",
+  },
+  {
+    title: "判题状态",
+    dataIndex: "status",
+  },
+  {
+    title: "题目 id",
+    dataIndex: "questionId",
+  },
+  {
+    title: "提交者 id",
+    dataIndex: "userId",
   },
   {
     title: "创建时间",
@@ -160,7 +175,7 @@ const doSubmit = () => {
 </script>
 
 <style scoped>
-#questionView {
+#questionSubmitView {
   max-width: 1280px;
   margin: 0 auto;
 }
