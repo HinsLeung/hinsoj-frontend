@@ -4,7 +4,7 @@
     ref="codeEditorRef"
     style="min-height: 400px; height: 70vh"
   />
-  <!--  <a-button @click="fillValue">填充值</a-button>-->
+  <a-button @click="fillValue">示例代码</a-button>
 </template>
 
 <script setup lang="ts">
@@ -29,12 +29,19 @@ const codeEditorRef = ref();
 const codeEditor = ref();
 const value = ref("hello world");
 
-/*const fillValue = () => {
+const fillValue = () => {
   if (!codeEditor.value) {
     return;
   }
-  toRaw(codeEditor.value).setValue("新的值");
-};*/
+  toRaw(codeEditor.value).setValue(
+    "import java.util.*;\n" +
+      "public class Main {\n" +
+      "    public static void main(String[] args) {\n" +
+      "        System.out.println();\n" +
+      "    }\n" +
+      "}"
+  );
+};
 
 watch(
   () => props.language,

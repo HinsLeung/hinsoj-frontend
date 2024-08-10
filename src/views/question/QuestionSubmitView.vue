@@ -42,7 +42,7 @@
       <template #questionId="{ record }">
         <a-space>
           <a-button type="primary" @click="toQuestionPage(record.questionId)"
-            >去做题
+            >查看题目
           </a-button>
         </a-space>
       </template>
