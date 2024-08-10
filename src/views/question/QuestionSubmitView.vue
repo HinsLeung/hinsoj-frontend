@@ -39,9 +39,9 @@
       <template #createTime="{ record }">
         {{ moment(record.createTime).format("YYYY-MM-DD HH:mm:ss") }}
       </template>
-      <template #optional="{ record }">
+      <template #questionId="{ record }">
         <a-space>
-          <a-button type="primary" @click="toQuestionPage(record)"
+          <a-button type="primary" @click="toQuestionPage(record.questionId)"
             >去做题
           </a-button>
         </a-space>
@@ -133,7 +133,7 @@ const columns = [
     slotName: "createTime",
   },
   {
-    slotName: "optional",
+    slotName: "questionId",
   },
 ];
 
@@ -157,9 +157,9 @@ const router = useRouter();
  * 跳转到题目做题页面
  * @param question
  */
-const toQuestionPage = (question: Question) => {
+const toQuestionPage = (questionId: number) => {
   router.push({
-    path: `/view/question/${question.id}`,
+    path: `/view/question/${questionId}`,
   });
 };
 
